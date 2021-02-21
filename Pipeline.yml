@@ -1,0 +1,25 @@
+pool:
+  vmImage: 'windows-latest'
+
+# global variables
+variables:
+  myVariable: 'This is my variable from the variables section'
+  releaseTemplate: 'Templates/Release.yml'
+
+stages:
+- stage: 'Dev'
+  displayName: 'Release to Dev'
+  jobs:
+  - template: ${{ variables.releaseTemplate }}
+    parameters:
+      variableGroup: 'dev'
+      myVariable: ${{ variables.myVariable }}
+
+- stage: 'Prod'
+  displayName: 'Release to Prod'
+  dependsOn: Dev
+  jobs:
+  - template: ${{ variables.releaseTemplate }}
+    parameters:
+      variableGroup: 'prod'
+      myVariable: ${{ variables.myVariable }}
