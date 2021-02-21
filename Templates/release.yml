@@ -1,0 +1,17 @@
+parameters:
+- name: variableGroup
+  type: string
+
+- name: myVariable
+  type: string
+
+jobs:
+  - job: DeploySolution
+    displayName: 'Deploy solution'
+    variables:
+      - group: ${{ parameters.variableGroup }} # points to variable group in Azure DevOps
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: 'This is from $env:ENV_NAME'
