@@ -4,7 +4,7 @@ pool:
 # global variables
 variables:
   myVariable: 'This is my variable from the variables section'
-  releaseTemplate: 'Templates/Release.yml'
+  releaseTemplate: 'Templates/release.yml'
 
 stages:
 - stage: 'Dev'
